@@ -24,7 +24,11 @@ type SelectedItemsProps< ItemType > = {
 	onRemove: ( item: ItemType ) => void;
 };
 
-export const SelectedItems = < ItemType, >( {
+export const SelectedItems = forwardRef(PrivateSelectedItems) as <ItemType>(
+  props: SelectedItemsProps<ItemType> & { ref?: React.ForwardedRef<HTML??Element> }
+) => ReturnType<typeof PrivateSelectedItems>;
+
+const PrivateSelectedItems = < ItemType, >( {
 	isReadOnly,
 	items,
 	getItemLabel,
